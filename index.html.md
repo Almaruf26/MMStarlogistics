@@ -1,0 +1,118 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<title>Onlimine Logistics</title>  
+  
+<!-- Google Fonts -->  
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">  
+  
+<style>  
+body { margin:0; font-family: 'Roboto', sans-serif; background:#f4f4f4; color:#333;}  
+header { background:#0a1f44; color:white; padding:60px 20px; text-align:center; background-image: url('https://images.unsplash.com/photo-1610465291351-85e820ec5f59?auto=format&fit=crop&w=1470&q=80'); background-size:cover; background-position:center;}  
+header h1 { font-size: 2.5rem; margin-bottom:10px; }  
+header p { font-size:1.2rem; margin-bottom:20px; }  
+.btn { background:#25D366; color:white; padding:15px 30px; border:none; border-radius:5px; text-decoration:none; font-weight:bold; display:inline-block;}  
+section { padding:50px 20px; max-width:900px; margin:0 auto;}  
+.features { display:flex; flex-wrap:wrap; justify-content: space-between; }  
+.feature-card { background:white; flex:1 1 30%; margin:10px; padding:20px; border-radius:10px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.1);}  
+.feature-card h3 { margin-bottom:10px; color:#0a1f44; }  
+.card { background:white; padding:20px; border-radius:10px; margin-top:20px; box-shadow:0 2px 8px rgba(0,0,0,0.1);}  
+input { width:100%; padding:12px; margin:8px 0; border-radius:5px; border:1px solid #ccc;}  
+button { width:100%; padding:12px; border:none; border-radius:5px; background:#25D366; color:white; font-weight:bold; margin-top:10px; cursor:pointer;}  
+.result { margin-top:10px; font-weight:bold; padding:10px; border-radius:5px;}  
+footer { background:#0a1f44; color:white; text-align:center; padding:20px;}  
+@media(max-width:768px){ .features { flex-direction:column; } }  
+</style>  
+</head>  
+  
+<body>  
+  
+<header>  
+<h1>Send Packages Anywhere in Nigeria</h1>  
+<p>Fast, Safe & Affordable Delivery</p>  
+<a href="#send" class="btn">Send a Package Now</a>  
+</header>  
+  
+<section class="features">  
+<div class="feature-card">  
+<h3>Fast Delivery 🚀</h3>  
+<p>Your packages delivered on time, every time.</p>  
+</div>  
+<div class="feature-card">  
+<h3>Reliable Tracking 📦</h3>  
+<p>Track your orders in real-time with your unique ID.</p>  
+</div>  
+<div class="feature-card">  
+<h3>Affordable Prices 💰</h3>  
+<p>Best rates for local and inter-state deliveries.</p>  
+</div>  
+</section>  
+  
+<section id="send">  
+<div class="card">  
+<h2>Send a Package</h2>  
+<input type="text" id="name" placeholder="Your Name">  
+<input type="text" id="phone" placeholder="Your Phone Number">  
+<input type="text" id="item" placeholder="Item Description">  
+<input type="text" id="pickup" placeholder="Pickup Location">  
+<input type="text" id="delivery" placeholder="Delivery Location">  
+<button onclick="sendToWhatsApp()">Send Request via WhatsApp</button>  
+</div>  
+</section>  
+  
+<section id="track">  
+<div class="card">  
+<h2>Track Your Order</h2>  
+<input type="text" id="trackId" placeholder="Enter Tracking ID (e.g. ONL1001)">  
+<button onclick="trackOrder()">Track</button>  
+<p class="result" id="result"></p>  
+</div>  
+</section>  
+  
+<footer>  
+<p>Contact us: WhatsApp 2347046874962| Email: Almaroof26@gmail.com</p>  
+<p>© 2026 MMStar Logistics</p>  
+</footer>  
+  
+<script>  
+function sendToWhatsApp(){  
+  let name = document.getElementById("name").value;  
+  let phone = document.getElementById("phone").value;  
+  let item = document.getElementById("item").value;  
+  let pickup = document.getElementById("pickup").value;  
+  let delivery = document.getElementById("delivery").value;  
+  
+  if(!name || !phone || !item || !pickup || !delivery){  
+    alert("Please fill all fields");  
+    return;  
+  }  
+  
+  let message = `New Delivery Request:%0AName: ${name}%0APhone: ${phone}%0AItem: ${item}%0APickup: ${pickup}%0ADelivery: ${delivery}`;  
+  window.open("https://wa.me/2347046874962?text=" + message, "_blank");  
+}  
+  
+// AUTO TRACKING EXAMPLE  
+let orders = {  
+  "ONL1001": "📦 Package Received",  
+  "ONL1002": "🚚 In Transit",  
+  "ONL1003": "✅ Delivered"  
+};  
+  
+function trackOrder(){  
+  let id = document.getElementById("trackId").value.toUpperCase();  
+  let result = document.getElementById("result");  
+  if(orders[id]){  
+    let color = orders[id].includes("Delivered") ? "green" : orders[id].includes("In Transit") ? "blue" : "orange";  
+    result.style.background=color; result.style.color="white";  
+    result.innerText="Status: "+orders[id];  
+  } else {  
+    result.style.background="red"; result.style.color="white";  
+    result.innerText="https://sheetdb.io/api/v1/5zf1qj6ozncox";  
+  }  
+}  
+</script>  
+  
+</body>  
+</html>  
